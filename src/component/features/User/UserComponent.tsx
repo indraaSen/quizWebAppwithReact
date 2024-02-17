@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import HeaderComponent from "../../module/HeaderComponent/HeaderComponent";
 import { Outlet } from "react-router-dom";
 import { userContext } from "../../../App";
+import TakeQuiz from "./TakeQuiz/TakeQuiz";
 
 const UserComponent = () =>{
     
@@ -24,8 +25,8 @@ const UserComponent = () =>{
     return(
         <div>
             <HeaderComponent pages ={userPages} loginUserDetails={userType} userName={userName} setLoginUserDetails={setLoginUserDetails}/>
-            <h1>this is user component.</h1>
-
+            {/* <h1>this is user component.</h1> */}
+            <TakeQuiz />
             {/* <Outlet /> */}
         </div>
     )
