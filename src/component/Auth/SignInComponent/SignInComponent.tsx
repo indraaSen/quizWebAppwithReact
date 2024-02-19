@@ -15,7 +15,6 @@ const SignInComponent = () =>{
         const loginDetails:any = await checkUser(loginObj.email, loginObj.password).catch((err) => alert(err));
 
         if(loginDetails && loginDetails.code == 200){
-            console.log("loginDetails.userData)",loginDetails.userData);
             contextData.setLoginUserDetails(loginDetails.userData);
         }else{
             alert("User not found");

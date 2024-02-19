@@ -4,22 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
-const CardComponent = ({randQuestions, hideButton}:{randQuestions:any, hideButton:string}) => {
-
-    const [isSelected,setIsSelected] = React.useState<any>({});
-
-    const changeRadioValue = (index:number, val:string) =>{
-        if (index < 5) {
-            setIsSelected({ ...isSelected, [index]: val });
-        }
-    }
-
-    const seeValue = () =>{
-        Object.keys(isSelected).forEach(index => {
-            console.log(`Question ${parseInt(index) + 1}: ${isSelected[index]}`);
-        });
-
-    }
+const CardComponent = ({randQuestions, hideButton,changeRadioValue, isSelected, seeValue}:{randQuestions:any, hideButton:string,changeRadioValue:any, isSelected:any, seeValue:() => void}) => {
 
 
   return (     

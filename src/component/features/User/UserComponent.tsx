@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import HeaderComponent from "../../module/HeaderComponent/HeaderComponent";
-import { Outlet } from "react-router-dom";
 import TakeQuiz from "./TakeQuiz/TakeQuiz";
 import { userContext } from "../../MainComponent/MainComponent";
+import Home from "./Home/Home";
+import Result from "./Result/Result";
+import Setting from "./Setting/Setting";
 
 const UserComponent = () =>{
     
@@ -19,8 +21,11 @@ const UserComponent = () =>{
     return(
         <div>
             <HeaderComponent pages ={userPages} loginUserDetails={userType} userName={userName} setLoginUserDetails={setLoginUserDetails}/>
+            {/* <Home /> */}
             <TakeQuiz />
-            <Outlet />
+            {/* <Result /> */}
+            {/* <Setting/> */}
+            
         </div>
     )
 };

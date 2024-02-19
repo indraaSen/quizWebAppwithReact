@@ -7,7 +7,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 2',
@@ -17,7 +17,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 3',
@@ -27,7 +27,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 4',
@@ -37,7 +37,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 5',
@@ -47,7 +47,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 6',
@@ -57,7 +57,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 7',
@@ -67,7 +67,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 8',
@@ -77,7 +77,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 9',
@@ -87,7 +87,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     },
     {
         question: 'javascript is question number 10',
@@ -97,7 +97,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 1']
+        correctAns : 'this is option 4'
     }],
 
     html : [{
@@ -108,7 +108,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 2',
@@ -118,7 +118,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 3',
@@ -128,7 +128,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 4',
@@ -138,7 +138,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 5',
@@ -148,7 +148,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 6',
@@ -158,7 +158,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 7',
@@ -168,7 +168,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 8',
@@ -178,7 +178,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 9',
@@ -188,7 +188,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'html is question number 10',
@@ -198,7 +198,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     }],
 
     css : [{
@@ -209,7 +209,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 2',
@@ -219,7 +219,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 3',
@@ -229,7 +229,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 4',
@@ -239,7 +239,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 5',
@@ -249,7 +249,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 6',
@@ -259,7 +259,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 7',
@@ -269,7 +269,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 8',
@@ -279,7 +279,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 9',
@@ -289,7 +289,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'css is question number 10',
@@ -299,7 +299,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     }],
 
     reactjs : [{
@@ -310,7 +310,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 2',
@@ -320,7 +320,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 3',
@@ -330,7 +330,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 4',
@@ -340,7 +340,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 5',
@@ -350,7 +350,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 6',
@@ -360,7 +360,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 7',
@@ -370,7 +370,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 8',
@@ -380,7 +380,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 9',
@@ -390,7 +390,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'reactjs is question number 10',
@@ -400,7 +400,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     }],
 
     sql: [{
@@ -411,7 +411,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 2',
@@ -421,7 +421,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 3',
@@ -431,7 +431,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 4',
@@ -441,7 +441,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 5',
@@ -451,7 +451,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 6',
@@ -461,7 +461,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 7',
@@ -471,7 +471,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 8',
@@ -481,7 +481,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 9',
@@ -491,7 +491,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-        correctAns : ['this is option 4']
+        correctAns : 'this is option 4'
     },
     {
         question: 'sql is question number 10',
@@ -501,7 +501,7 @@ export const QandA:any = {
             'this is option 3',
             'this is option 4'
             ],
-         correctAns : ['this is option 4']
+         correctAns : 'this is option 4'
     }],
 };
 
@@ -570,4 +570,25 @@ export const getAllQuestions = (sub:string) =>{
         }
     }
 
+}
+
+//this method will check the ans and return the correct ans and give score /5
+export const checkAnswer = (quizSubject:string, opts : any) =>{
+
+    let count = 0;
+    let key= (Object.keys(QandA));
+    const all:any = Object.values(QandA);
+    for(let i = 0; i < key.length; i++){ 
+        if(key[i] === quizSubject){
+            const newQueList= all[i];
+            for(let j = 0; j < newQueList.length; j++){
+                for(let k = 0; k < opts.length; k++){
+                    if(newQueList[j].correctAns === opts[k]){    
+                        count++;
+                    }
+                }
+            }
+        }
+    }
+    return count/10;
 }

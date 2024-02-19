@@ -11,7 +11,6 @@ const MainComponent = () =>{
     const [loginUserDetails, setLoginUserDetails] = useState<any>({});
     const [isSignUp, setIsSignUp] = useState(false);
   
-      console.log("loginUserDetails from main component",loginUserDetails);
       const allObj = {
         isSignUp, 
         setIsSignUp,
