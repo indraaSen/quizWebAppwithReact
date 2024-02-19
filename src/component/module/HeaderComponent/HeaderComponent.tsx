@@ -7,15 +7,10 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { grey } from '@mui/material/colors';
-import { userContext } from "../../../App";
-import { NavLink } from 'react-router-dom';
-import styless from './HeaderComponent.module.scss'
+
 
 
 const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{userName:any,pages:any,loginUserDetails:any,setLoginUserDetails:React.Dispatch<any>})=> {
@@ -86,7 +81,7 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
             >
               {pages.map((page:any) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  {/* <Typography textAlign="center">{page.name}</Typography> */}
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,20 +108,13 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page:any) => (
               <Button
-                key={page.name}
+                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page.name}
-              // </Button>
-            //   <NavLink
-            //   to={page.path}
-            //   className={({ isActive, isPending }) =>
-            //     isPending ? "pending" : isActive ? styless['active'] : styless['default']
-            //   }
-            // >
-            //   {page.name}
-            // </NavLink>
+                {page}
+               </Button>
+              
             ))}
           </Box>
 

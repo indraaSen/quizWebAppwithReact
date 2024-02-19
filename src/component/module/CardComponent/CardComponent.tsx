@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
 
-const CardComponent = ({randQuestions}:{randQuestions:any}) => {
+const CardComponent = ({randQuestions, hideButton}:{randQuestions:any, hideButton:string}) => {
 
     const [isSelected,setIsSelected] = React.useState<any>({});
 
@@ -50,7 +50,7 @@ const CardComponent = ({randQuestions}:{randQuestions:any}) => {
             </Card>
        )
      }
-     <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white mb-2' onClick={seeValue}>submit</button>
+     <button className={`${hideButton} border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white mb-2`} onClick={seeValue}>submit</button>
    </div>
   );
 }

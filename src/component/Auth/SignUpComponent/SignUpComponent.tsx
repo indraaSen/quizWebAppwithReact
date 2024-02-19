@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { userContext } from "../../../App";
 import { Box, TextField, Button } from "@mui/material";
 import styless from '../AuthComponent.module.scss';
+import { userContext } from "../../MainComponent/MainComponent";
 
 const SignUpComponent = () =>{
 

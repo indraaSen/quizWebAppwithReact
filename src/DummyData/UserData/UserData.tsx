@@ -47,3 +47,16 @@ export const checkUser = (email:string, password:string) =>{
         }, 500);
     })
 }
+
+export const getUserData = (uType:string) =>{
+
+    let newUserData:any = [];
+
+    allUserData.filter((data:any) => 
+    {
+        if(data.userType === uType){
+            newUserData.push(data);
+        }
+    });
+    return newUserData;
+}

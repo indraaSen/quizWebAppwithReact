@@ -1,8 +1,7 @@
 import React from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
-import { SelectChangeEvent } from "@mui/material";
 import CardComponent from "../../../module/CardComponent/CardComponent";
-import { giveAnswer } from "../../../../DummyData/DummyQuestions/DummyQuestions";
+import { randomQuestions } from "../../../../DummyData/DummyQuestions/DummyQuestions";
 
 const TakeQuiz = () =>{
 
@@ -10,6 +9,7 @@ const TakeQuiz = () =>{
 
     const [quizSubject, setQuizSubject] = React.useState('');
     const [randQuestions, setRandQuestions] = React.useState<any>([]);
+    const [hideButton, setHideButton] = React.useState('hidden');
 
     const handleChange = (event: string) => {
       setQuizSubject(event);
@@ -19,8 +19,9 @@ const TakeQuiz = () =>{
     const startQuiz = () =>{
       
         if(quizSubject !== 'select'){
-            const newQuestions = giveAnswer(quizSubject);
-            setRandQuestions(newQuestions);  
+            const newQuestions = randomQuestions(quizSubject);
+            setRandQuestions(newQuestions); 
+            setHideButton('');
         }
     }
 
@@ -31,12 +32,12 @@ const TakeQuiz = () =>{
             <div className="flex pt-5">
                 <h3 className="font-semibold text-2xl pt-2 pr-3">Please select quiz subject: </h3>
                 <DropDownComponent handleChange={handleChange} quizSubject={quizSubject} subs={subs}/>
-                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white mb-2' onClick={startQuiz}>Start</button>
+                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white ' onClick={startQuiz}>Start</button>
 
             </div>
 
             <div className="pt-8 flex justify-center">
-                <CardComponent randQuestions={randQuestions}/>
+                <CardComponent randQuestions={randQuestions} hideButton={hideButton}/>
             </div>
 
         </div>

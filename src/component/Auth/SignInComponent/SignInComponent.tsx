@@ -1,8 +1,7 @@
 import { Box, Button, Card, TextField } from "@mui/material";
 import { useContext, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { userContext } from "../../../App";
 import { checkUser } from "../../../DummyData/UserData/UserData";
+import { userContext } from "../../MainComponent/MainComponent";
 
 const SignInComponent = () =>{
 
