@@ -1,7 +1,9 @@
+import ResultCardComponent from "../../../module/ResultCardComponent/ResultCardComponent";
+
 const Result = () =>{
     return(
         <div>
-            <h1>this is result of user.</h1>
+            <ResultCardComponent />
         </div>
     )
 };

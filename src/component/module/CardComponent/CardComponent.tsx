@@ -6,7 +6,6 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mu
 
 const CardComponent = ({randQuestions, hideButton,changeRadioValue, isSelected, seeValue}:{randQuestions:any, hideButton:string,changeRadioValue:any, isSelected:any, seeValue:() => void}) => {
 
-
   return (     
    <div>
      {

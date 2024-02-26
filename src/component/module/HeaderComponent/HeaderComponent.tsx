@@ -10,10 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import styless from './HeaderComponent.module.scss';
 
 
-
-const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{userName:any,pages:any,loginUserDetails:any,setLoginUserDetails:React.Dispatch<any>})=> {
+const HeaderComponent =({pages,setLoginUserDetails,contextData}:{pages:any,contextData:any,setLoginUserDetails:React.Dispatch<any>})=> {
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -30,7 +32,7 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
     <AppBar position="static" color= 'secondary'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -46,8 +48,7 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
               textDecoration: 'none',
             }}
           >
-            {`${loginUserDetails} - ${userName}`}
-            {/* {`user`} */}
+            {`${contextData.loginUserDetails.usertype} - ${contextData.loginUserDetails.fullname}`}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -79,11 +80,14 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page:any) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map((page: any) => (
+              <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <Link to={page.path}>
+                  {page.name}
+                </Link>
+              </MenuItem>
               ))}
+              
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -107,13 +111,12 @@ const HeaderComponent =({pages,setLoginUserDetails,loginUserDetails,userName}:{u
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page:any) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-               </Button>
+              <NavLink key={page.name} to={page.path} className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? styless['active'] : styless['default']
+            } >
+                {page.name}
+              </NavLink>
+              
               
             ))}
           </Box>

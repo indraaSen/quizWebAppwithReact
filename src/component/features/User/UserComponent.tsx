@@ -1,31 +1,30 @@
 import React, { useContext } from "react";
 import HeaderComponent from "../../module/HeaderComponent/HeaderComponent";
-import TakeQuiz from "./TakeQuiz/TakeQuiz";
 import { userContext } from "../../MainComponent/MainComponent";
-import Home from "./Home/Home";
-import Result from "./Result/Result";
-import Setting from "./Setting/Setting";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const UserComponent = () =>{
-    
-    const userPages = ['Home', 'Take Quiz', 'Result', 'Setting'];
-    const contextData = React.useContext(userContext);
 
-    const userType = contextData.loginUserDetails.userType;
-    const userName = contextData.loginUserDetails.fullName;
-   
+    const userPages = [
+        {name:'Home',path:'home'},
+        {name:'Take Quiz', path:'takequiz'},
+        {name:'Result', path:'result'},
+        {name:'Setting', path:'setting'}
+    ]
+
+    const contextData = React.useContext(userContext);
+    const navi = useNavigate();
+    // console.log("contexdata of the loginuser from user component ", contextData.loginUserDetails);
     const setLoginUserDetails = () =>{
         contextData.setLoginUserDetails({});
+        navi("/");
     }
+
 
     return(
         <div>
-            <HeaderComponent pages ={userPages} loginUserDetails={userType} userName={userName} setLoginUserDetails={setLoginUserDetails}/>
-            {/* <Home /> */}
-            <TakeQuiz />
-            {/* <Result /> */}
-            {/* <Setting/> */}
-            
+            <HeaderComponent pages ={userPages} contextData={contextData} setLoginUserDetails={setLoginUserDetails}/>
+            <Outlet />
         </div>
     )
 };
