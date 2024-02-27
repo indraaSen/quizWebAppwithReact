@@ -16,7 +16,7 @@ const CardComponent = ({randQuestions, hideButton,changeRadioValue, isSelected, 
                         {index + 1}/5
                     </Typography>
                     <Typography variant="h5" component="div" sx={{paddingBottom: "20px"}}>
-                        {opt.question}
+                        {opt.randQue}
                     </Typography>
                     <FormControl>
                         <FormLabel id={`demo-controlled-radio-buttons-group ${index}`}>Options</FormLabel>

@@ -1,8 +1,8 @@
 import React from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
 import CardComponent from "../../../module/CardComponent/CardComponent";
-import { checkAnswer, randomQuestions } from "../../../../DummyData/DummyQuestions/DummyQuestions";
 import PopupComponent from "../../../module/PopupComponent/PopupComponent";
+import axios from "axios";
 
 const TakeQuiz = () =>{
 
@@ -20,13 +20,11 @@ const TakeQuiz = () =>{
       
     };
 
-    const startQuiz = () =>{
+    const startQuiz = async () =>{
       
-        if(quizSubject !== 'select'){
-            const newQuestions = randomQuestions(quizSubject);
-            setRandQuestions(newQuestions); 
-            setHideButton('');
-        }
+       const quizQuestion = await axios(`http://localhost:8080/user/takeaquiz?subject=${quizSubject}`);
+       setRandQuestions(quizQuestion.data);
+       setHideButton('');
     }
 
     const changeRadioValue = (index:number, val:string) =>{
@@ -35,15 +33,17 @@ const TakeQuiz = () =>{
         }
     }
 
-    const seeValue = () =>{
-        
+    const seeValue = async() =>{
         const UserSelectedAnswer:any = [];
         Object.keys(isSelected).forEach(index => {
-            UserSelectedAnswer.push(isSelected[index]);
+            UserSelectedAnswer.push({"resultquestion" : (randQuestions[index].randQue), "checkoption" : isSelected[index]})
         });
-        const check = checkAnswer(quizSubject, UserSelectedAnswer)
-        setResult(check);
+        
+        const checkAnswer = await axios.post("http://localhost:8080/user/checkanswer", UserSelectedAnswer);
+        setResult(checkAnswer.data);
         setOpen(true);
+        setRandQuestions([]);
+        setHideButton('hidden');
     }
 
     return(
@@ -53,12 +53,12 @@ const TakeQuiz = () =>{
             <div className="flex pt-5">
                 <h3 className="font-semibold text-2xl pt-2 pr-3">Please select quiz subject: </h3>
                 <DropDownComponent handleChange={handleChange} quizSubject={quizSubject} subs={subs}/>
-                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white ' onClick={startQuiz}>Start</button>
+                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white ' onClick={startQuiz} disabled={false}>Start</button>
 
             </div>
 
             <div className="pt-8 flex justify-center">
-                <CardComponent randQuestions={randQuestions} hideButton={hideButton} changeRadioValue={changeRadioValue}isSelected={isSelected} seeValue={seeValue}/>
+                <CardComponent randQuestions={randQuestions} hideButton={hideButton} changeRadioValue={changeRadioValue} isSelected={isSelected} seeValue={seeValue}/>
             </div>
             <PopupComponent result= {result} open={open} setOpen={setOpen}/>
 
