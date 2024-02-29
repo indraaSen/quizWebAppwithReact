@@ -1,32 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
 import UserTable from "../../../module/UserTable/UserTable";
-import { getUserData } from "../../../../DummyData/UserData/UserData";
+import axios from "axios";
 
 const AllUsers = () =>{
 
     const subs:string[] = ['select','user','admin'];
-    const heading :string[] = ['id','Full Name', 'Email', 'Department', 'User Type'];
+    const heading :string[] = ['id','Full Name', 'Email', 'User Type'];
 
     const [userType, setUserType] = React.useState('');
     const [rows, setRows] = React.useState<any>();
+
+    useEffect(() => {
+      getAllUsers()
+    }, []);    
+
+    const getAllUsers = async () =>{
+        const users = await axios.get("http://localhost:8080/admin/getallusers");
+        setRows( users.data);
+    }
 
     const handleChange = (event: string) => {
       setUserType(event);
     };
 
-    const filterUser = () =>{
-        const data:any = getUserData(userType);
-        console.log("data from the all user component", data);
-        setRows(data);
+    const filterUser = async() =>{
+        if(userType === 'admin'){
+            const alluser = await axios.get("http://localhost:8080/admin/getallusers/usertype?usertype=admin");
+            setRows(alluser.data);
+        }else if(userType === 'user'){
+            const alluser = await axios.get("http://localhost:8080/admin/getallusers/usertype?usertype=user");
+            setRows(alluser.data);
+        }else{
+            alert("Please select the correct value");
+        }
     }
 
     return(
         <div>
-            <div className="flex pt-5 end-0">
+            <div className="flex pt-5 end-0 mb-5">
                 <h3 className="font-semibold text-2xl pt-2 pr-3">Filter Users: </h3>
-                <DropDownComponent handleChange={handleChange} quizSubject={userType} subs={subs}/>
-                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white ' onClick={filterUser}>Start</button>
+                <DropDownComponent handleChange={handleChange} quizSubject={userType} subs={subs} DropDownHeading={'UserType'}/>
+                <button className='border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white ' onClick={filterUser}>Find</button>
             </div>
             <UserTable heading={heading} rows={rows}/>
         </div>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 
@@ -20,7 +19,7 @@ const style = {
   flexDirection:"column"
 };
 
-const PopupComponentSetting = ({open,setOpen,fields}:{open:boolean,setOpen:React.Dispatch<React.SetStateAction<boolean>>,fields:any}) => {
+const PopupComponentSetting = ({open,setOpen,setTextField1,setTextField2,textvalue,changeData}:{open:boolean,setOpen: React.Dispatch<React.SetStateAction<boolean>>,setTextField1:React.Dispatch<React.SetStateAction<string>>,setTextField2:React.Dispatch<React.SetStateAction<string>>,textvalue:any,changeData:(val1:string, val2:string)=>void}) => {
 
   return (
     <div>
@@ -31,8 +30,9 @@ const PopupComponentSetting = ({open,setOpen,fields}:{open:boolean,setOpen:React
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        {fields.map((val:any)=><TextField sx={{marginBottom:"10px"}} id="outlined-basic" label={val} variant="outlined" onChange={(e)=>console.log(e.target.value)}/>)}
-        <Button variant="contained" color="primary" onClick={() => console.log("change hua ")}>Change</Button>
+        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" label={textvalue[0]} variant="outlined" onChange={(e)=> setTextField1(e.target.value)}/>
+        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" label={textvalue[1]} variant="outlined" onChange={(e)=> setTextField2(e.target.value)}/>
+        <Button variant="contained" color="primary" onClick={() => changeData(textvalue[0],textvalue[1]) }>Change</Button>
         </Box>
       </Modal>
     </div>

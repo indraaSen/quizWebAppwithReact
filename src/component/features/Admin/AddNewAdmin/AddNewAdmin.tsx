@@ -1,30 +1,30 @@
-import { useContext, useState } from "react";
-import { Box, TextField, Button, Card } from "@mui/material";
-import { userContext } from "../../MainComponent/MainComponent";
+import { Box, Card, TextField, Button } from "@mui/material";
 import axios from "axios";
+import { useContext, useState } from "react";
+import { userContext } from "../../../MainComponent/MainComponent";
 
-const SignUpComponent = () =>{
-
+const AddNewAdmin = () =>{
+   
     const contextData = useContext(userContext);
     
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [userType, setUserType] = useState('user')
+    const [userType, setUserType] = useState('admin')
 
     const addNewUser = async () =>{
 
         try {
                 if(fullName.length !== 0 && email.length !== 0 && password.length !== 0 && confirmPassword.length !== 0 && userType.length !== 0){
                    if(password === confirmPassword){
-                        const response = await axios.post("http://localhost:8080/user/saveuser", {fullname :fullName , email, password, usertype:userType});
-
-                        if (response.status === 201) {
-                            alert("Account created");
-                            window.location.href = '/';    
-                        } else {
-                            alert("Please check your credentials.");
+                        const response = await axios.post("http://localhost:8080/admin/savenewadmin", {fullname :fullName , email, password, usertype:userType});
+                        if (response.status === 200) {
+                            alert("Account created");  
+                            setFullName('');
+                            setEmail('');
+                            setPassword('');
+                            setConfirmPassword('');
                         }
                    }else{
                     alert("Password did not matched")
@@ -33,20 +33,20 @@ const SignUpComponent = () =>{
                     alert("Field should not be empty!!")
                 }
             } catch (error) {
-                alert("An error occurred during sign up. Please try again later.");
+                alert("An error occurred during creating new admin. Please try again later.");
               }
           };
 
     return(
         <Box sx={{display:"flex", justifyContent:"center", margin:"20px"}}>
             <Card sx={{ height:"700px" ,width:"480px", display:"flex", flexDirection:"column", justifyContent:"space-around", padding:"40px"}}>
-                <h1>Sign Up</h1>
+                <h1><b>Add New Admin</b></h1>
                 <TextField id="outlined-basic" label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} variant="outlined" />
                 <TextField id="outlined-basic" label="Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
                 <TextField id="outlined-basic" label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
                 <TextField id="outlined-basic" label="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} variant="outlined" />
-                <TextField id="outlined-basic" label="Type" type="text" value="user" variant="outlined" disabled/>
-                <Button variant="contained" type="submit" color="success" onClick={ addNewUser}>Sign Up</Button>
+                <TextField id="outlined-basic" label="Type" type="text" value="admin" variant="outlined" disabled/>
+                <Button variant="contained" type="submit" color="primary" onClick={ addNewUser}>Add</Button>
 
                 <span>
                     Already have an Account ? <Button variant="text" onClick={() => contextData.setIsSignUp(false)}>SignIn</Button>
@@ -57,4 +57,4 @@ const SignUpComponent = () =>{
     )
 };
 
-export default SignUpComponent;
+export default AddNewAdmin;

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 function ErrorHandle() {
   const navi = useNavigate();
   const goToSignIn = () =>{
-    
     navi("/");
   }
   return (

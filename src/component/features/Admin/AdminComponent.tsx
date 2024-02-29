@@ -6,12 +6,12 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 const AdminComponent = () =>{
 
-    // const AdminPages = ['Home', 'Add Questions', ' All Questions', 'Users', 'Setting'];
     const AdminPages = [
         {name:'Home', path:'home'},
         {name:'Add Questions', path:'addquestion'},
         {name:'All Questions', path:'allquestion'},
-        {name:'users', path:'alluser'},
+        {name:'All Users', path:'alluser'},
+        {name:'Add New Admin', path:'addnewadmin'},
         {name:'Setting', path:'setting'}
     ]
 

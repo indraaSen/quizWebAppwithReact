@@ -20,10 +20,10 @@ function UserTable({heading,rows}:{heading : string[],rows:any}) {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row" >{index+1}</TableCell>
-                  <TableCell align="center">{row.fullName}</TableCell>
+                  <TableCell align="center">{row.fullname}</TableCell>
                   <TableCell align="center">{row.email}</TableCell>
-                  <TableCell align="center">{row.department}</TableCell>
-                  <TableCell align="center">{row.userType}</TableCell>
+                  <TableCell align="center">{row.password}</TableCell>
+                  <TableCell align="center">{row.usertype}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

@@ -1,6 +1,5 @@
 import { Box, Button, Card, TextField } from "@mui/material";
 import { useContext, useState } from "react";
-import { checkUser } from "../../../DummyData/UserData/UserData";
 import { userContext } from "../../MainComponent/MainComponent";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";

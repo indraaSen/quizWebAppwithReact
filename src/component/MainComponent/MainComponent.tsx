@@ -1,9 +1,9 @@
 
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import AuthComponent from "../Auth/AuthComponent";
 import AdminComponent from "../features/Admin/AdminComponent";
 import UserComponent from "../features/User/UserComponent";
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, useNavigate} from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import SignInComponent from "../Auth/SignInComponent/SignInComponent";
 import SignUpComponent from "../Auth/SignUpComponent/SignUpComponent";
 import Home from "../features/User/Home/Home";
@@ -16,6 +16,7 @@ import AllQuestions from "../features/Admin/AllQuestions/AllQuestions";
 import AllUsers from "../features/Admin/AllUsers/AllUsers";
 import AdminSetting from "../features/Admin/AdminSetting/AdminSetting";
 import ErrorHandle from "../ErrorHandle/ErrorHandle";
+import AddNewAdmin from "../features/Admin/AddNewAdmin/AddNewAdmin";
 
 
 export const userContext = React.createContext<any>({});
@@ -54,6 +55,7 @@ const MainComponent = () =>{
             <Route path="addquestion" element={<AddQuestions />} />
             <Route path="allquestion" element={<AllQuestions />} />
             <Route path="alluser" element={<AllUsers />} />
+            <Route path="addnewadmin" element={<AddNewAdmin/>} />
             <Route path="setting" element={<AdminSetting />} />
           </Route>
           <Route path="*" element={<ErrorHandle />} />

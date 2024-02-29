@@ -14,12 +14,11 @@ const UserComponent = () =>{
 
     const contextData = React.useContext(userContext);
     const navi = useNavigate();
-    // console.log("contexdata of the loginuser from user component ", contextData.loginUserDetails);
+
     const setLoginUserDetails = () =>{
         contextData.setLoginUserDetails({});
         navi("/");
     }
-
 
     return(
         <div>
