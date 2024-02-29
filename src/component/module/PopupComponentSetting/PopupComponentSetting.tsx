@@ -30,8 +30,8 @@ const PopupComponentSetting = ({open,setOpen,setTextField1,setTextField2,textval
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" label={textvalue[0]} variant="outlined" onChange={(e)=> setTextField1(e.target.value)}/>
-        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" label={textvalue[1]} variant="outlined" onChange={(e)=> setTextField2(e.target.value)}/>
+        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" type={textvalue[0] === 'Password' ? 'password':'text'} label={textvalue[0]} variant="outlined" onChange={(e)=> setTextField1(e.target.value)}/>
+        <TextField sx={{marginBottom:"10px"}} id="outlined-basic" type={textvalue[1] === 'Password' ? 'password':'text'} label={textvalue[1]} variant="outlined" onChange={(e)=> setTextField2(e.target.value)}/>
         <Button variant="contained" color="primary" onClick={() => changeData(textvalue[0],textvalue[1]) }>Change</Button>
         </Box>
       </Modal>
