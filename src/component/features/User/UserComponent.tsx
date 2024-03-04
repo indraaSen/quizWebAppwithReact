@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import HeaderComponent from "../../module/HeaderComponent/HeaderComponent";
-import { userContext } from "../../MainComponent/MainComponent";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const UserComponent = () =>{
 
@@ -12,17 +11,9 @@ const UserComponent = () =>{
         {name:'Setting', path:'setting'}
     ]
 
-    const contextData = React.useContext(userContext);
-    const navi = useNavigate();
-
-    const setLoginUserDetails = () =>{
-        contextData.setLoginUserDetails({});
-        navi("/");
-    }
-
     return(
         <div>
-            <HeaderComponent pages ={userPages} contextData={contextData} setLoginUserDetails={setLoginUserDetails}/>
+            <HeaderComponent pages ={userPages}/>
             <Outlet />
         </div>
     )

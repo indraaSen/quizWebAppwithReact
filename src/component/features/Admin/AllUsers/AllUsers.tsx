@@ -5,8 +5,8 @@ import axios from "axios";
 
 const AllUsers = () =>{
 
-    const subs:string[] = ['select','user','admin'];
-    const heading :string[] = ['id','Full Name', 'Email', 'User Type'];
+    const subs:string[] = ['select all','user','admin'];
+    const heading :string[] = ['id','Full Name', 'Email', 'Password','User Type'];
 
     const [userType, setUserType] = React.useState('');
     const [rows, setRows] = React.useState<any>();
@@ -31,6 +31,8 @@ const AllUsers = () =>{
         }else if(userType === 'user'){
             const alluser = await axios.get("http://localhost:8080/admin/getallusers/usertype?usertype=user");
             setRows(alluser.data);
+        }else if(userType === 'select all'){
+            getAllUsers();
         }else{
             alert("Please select the correct value");
         }

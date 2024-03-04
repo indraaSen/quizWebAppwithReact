@@ -4,12 +4,12 @@ import axios from "axios";
 
 const AddQuestions = () =>{
 
-    const [subject, setSubject ]= useState('');
-    const [question, setQuestion ]= useState('');
-    const [option1, setOption1 ]= useState('');
-    const [option2, setOption2 ]= useState('');
-    const [option3, setOption3 ]= useState('');
-    const [option4, setOption4 ]= useState('');
+    const [subject, setSubject]= useState('');
+    const [question, setQuestion]= useState('');
+    const [option1, setOption1]= useState('');
+    const [option2, setOption2]= useState('');
+    const [option3, setOption3]= useState('');
+    const [option4, setOption4]= useState('');
     const [correctanswer, setCorrectAnswer ]= useState('');
 
     const addQuestion =  async () =>{

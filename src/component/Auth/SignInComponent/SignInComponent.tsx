@@ -1,37 +1,28 @@
 import { Box, Button, Card, TextField } from "@mui/material";
-import { useContext, useState } from "react";
-import { userContext } from "../../MainComponent/MainComponent";
 import {useNavigate} from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginUser } from "../../../Slice/Login/user.login";
+import { setIsSignUp } from "../../../Slice/Login/LoginReducer";
+import { useState } from "react";
 
 const SignInComponent = () =>{
 
-    const contextData = useContext(userContext);
+    const userVal = useSelector((state:any) =>  state.login.userdata);
+   
+    const dispatch = useDispatch();
+    const navi = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const navi = useNavigate();
-
-    const LoginUser = async () => {
-        try {
-          const response = await axios.post('http://localhost:8080/user/login', {
-            email,password
-          });
-
-          if (response.status === 200) {
-            contextData.setLoginUserDetails(response.data);
-            const userType = response.data.usertype;
-            navi(userType === 'user' ? '/user/home' : '/admin/home');
-          } else {
-            
-            alert("Login failed. Please check your credentials.");
-          }
-        } catch (error) {
-          console.error("Error logging in:", error);
-          alert("An error occurred during login. Please try again later.");
+    const handleLogin = () => {
+        
+        LoginUser({ email, password }, dispatch, navi);
+        if (userVal === null) {
+          navi("/");
         }
-      };
+        
+    };
 
 
     return(
@@ -41,10 +32,10 @@ const SignInComponent = () =>{
                 <h1 data-testid="h1-tag">Sign In</h1>
                 <TextField id="outlined-basic" inputProps={{"data-testid":"email-input"}} label="Email" value={email} onChange={(e) => setEmail(e.target.value)} variant="outlined" />
                 <TextField id="outlined-basic" type="password" inputProps={{"data-testid":"password-input"}} label="Password" value={password} onChange={(e) => setPassword(e.target.value)} variant="outlined" />
-                <Button variant="contained" color="primary" onClick={()=> LoginUser()}>Sign In</Button>
+                <Button variant="contained" color="primary" onClick={()=> handleLogin()}>Sign In</Button>
 
                 <span>
-                    Do not have an Account ? <Button onClick={() => contextData.setIsSignUp(true)} variant="text">Sign Up</Button>
+                    Do not have an Account ? <Button onClick={() => dispatch(setIsSignUp({isSignUp:true}))} variant="text">Sign Up</Button>  
                 </span>
             </Card>
         </Box>

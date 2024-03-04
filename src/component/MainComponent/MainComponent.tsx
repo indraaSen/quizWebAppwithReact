@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React from "react";
 import AuthComponent from "../Auth/AuthComponent";
 import AdminComponent from "../features/Admin/AdminComponent";
 import UserComponent from "../features/User/UserComponent";
@@ -18,27 +18,10 @@ import AdminSetting from "../features/Admin/AdminSetting/AdminSetting";
 import ErrorHandle from "../ErrorHandle/ErrorHandle";
 import AddNewAdmin from "../features/Admin/AddNewAdmin/AddNewAdmin";
 
-
-export const userContext = React.createContext<any>({});
-
 const MainComponent = () =>{
-
-    const [loginUserDetails, setLoginUserDetails] = useState<any>({});
-    const [isSignUp, setIsSignUp] = useState(false);
-    const [singUpBtn, setSingUpBtn] = useState([]);
-
-      const allObj = {
-        isSignUp, 
-        setIsSignUp,
-        loginUserDetails,
-        setLoginUserDetails,
-        singUpBtn,
-        setSingUpBtn
-      }
 
     return (
        
-      <userContext.Provider value={allObj}>
          <BrowserRouter>
         <Routes>
           <Route path="/" element={<AuthComponent />} />
@@ -61,7 +44,6 @@ const MainComponent = () =>{
           <Route path="*" element={<ErrorHandle />} />
         </Routes>
       </BrowserRouter>
-      </userContext.Provider>
  
     );
   }

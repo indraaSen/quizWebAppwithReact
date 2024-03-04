@@ -1,11 +1,8 @@
 import { Box, Card, TextField, Button } from "@mui/material";
 import axios from "axios";
-import { useContext, useState } from "react";
-import { userContext } from "../../../MainComponent/MainComponent";
+import { useState } from "react";
 
 const AddNewAdmin = () =>{
-   
-    const contextData = useContext(userContext);
     
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -47,11 +44,6 @@ const AddNewAdmin = () =>{
                 <TextField id="outlined-basic" label="confirmPassword" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} variant="outlined" />
                 <TextField id="outlined-basic" label="Type" type="text" value="admin" variant="outlined" disabled/>
                 <Button variant="contained" type="submit" color="primary" onClick={ addNewUser}>Add</Button>
-
-                <span>
-                    Already have an Account ? <Button variant="text" onClick={() => contextData.setIsSignUp(false)}>SignIn</Button>
-                </span>
-            
             </Card>
         </Box>
     )

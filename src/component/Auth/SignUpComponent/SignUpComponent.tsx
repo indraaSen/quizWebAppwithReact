@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Box, TextField, Button, Card } from "@mui/material";
-import { userContext } from "../../MainComponent/MainComponent";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setIsSignUp } from "../../../Slice/Login/LoginReducer";
 
 const SignUpComponent = () =>{
 
-    const contextData = useContext(userContext);
+    const dispatch = useDispatch();
     
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -49,7 +50,7 @@ const SignUpComponent = () =>{
                 <Button variant="contained" type="submit" color="success" onClick={ addNewUser}>Sign Up</Button>
 
                 <span>
-                    Already have an Account ? <Button variant="text" onClick={() => contextData.setIsSignUp(false)}>SignIn</Button>
+                    Already have an Account ? <Button variant="text" onClick={() => dispatch(setIsSignUp({isSignUp:false}))}>SignIn</Button>
                 </span>
             
             </Card>

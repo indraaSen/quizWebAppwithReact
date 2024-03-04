@@ -1,16 +1,16 @@
-import { useContext, useState } from "react";
-import { userContext } from "../../../MainComponent/MainComponent";
+import { useState } from "react";
 import styless from '../AdminComponent.module.scss';
 import AvatarComponent from "../../../module/AvatarComponent/AvatarComponent";
 import axios from "axios";
 import CardComponentSetting from "../../../module/CardComponent.Setting/CardComponent.Setting";
+import { useSelector } from "react-redux";
 
 
 const AdminSetting = () =>{
  
-    const cardHeadText = ['User Name', 'Password', 'Email'];
+    const userDetail = useSelector((state:any)=> state.login.userdata);
 
-    const contextData = useContext(userContext);
+    const cardHeadText = ['User Name', 'Password', 'Email'];
 
     const [open, setOpen] = useState(false);
     const [textField1, setTextField1] = useState('');
@@ -35,7 +35,7 @@ const AdminSetting = () =>{
         if(val1 === 'Email' && val2 === 'User Name'){
             const email = textField1;
             const fullname = textField2;
-            if(contextData.loginUserDetails.email === email){
+            if(userDetail.email === email){
                 const changeusername = await axios.post("http://localhost:8080/admin/updateusername",{email,fullname});
                 if(changeusername.status === 200){
                     setOpen(false);
@@ -49,7 +49,7 @@ const AdminSetting = () =>{
         }else if(val1 === 'Email' && val2 === 'Password'){
             const email = textField1;
             const password = textField2;
-            if(contextData.loginUserDetails.email === email){
+            if(userDetail.email === email){
                 const changeusername = await axios.post("http://localhost:8080/admin/updateuserpassword",{email,password});
                 if(changeusername.status === 200){
                     setOpen(false);
@@ -63,7 +63,7 @@ const AdminSetting = () =>{
         }else if(val1 === 'Password' && val2 === 'Email'){
             const password = textField1;
             const email = textField2;
-            if(contextData.loginUserDetails.password === password){
+            if(userDetail.password === password){
                 const changeusername = await axios.post("http://localhost:8080/admin/updateuseremail",{password,email});
                 if(changeusername.status === 200){
                     setOpen(false);
@@ -82,10 +82,10 @@ const AdminSetting = () =>{
         <>
             <div style={{marginTop:"20vh"}}>
                 <div className={styless['setting-div']}>
-                    <AvatarComponent avatarInitial={contextData.loginUserDetails.fullname.split('')[0].toUpperCase()}/>
+                    <AvatarComponent avatarInitial={userDetail.fullname.split('')[0].toUpperCase()}/>
                 </div>
                 <div style={{display:"flex", justifyContent:"center", fontSize:"25px"}}>
-                    <h1><b>{contextData.loginUserDetails.fullname}</b></h1>
+                    <h1><b>{userDetail.fullname}</b></h1>
                 </div>
             </div>
 

@@ -1,13 +1,13 @@
-import { useContext } from "react";
+
 import SignInComponent from "./SignInComponent/SignInComponent";
 import SignUpComponent from "./SignUpComponent/SignUpComponent";
-import { userContext } from "../MainComponent/MainComponent";
+import { useSelector } from "react-redux";
 
 const AuthComponent = () =>{
-    const contextData = useContext(userContext);
+    const isSignUp = useSelector((state:any) =>  state.login.isSignUp);
     return(
         <>
-        {contextData.isSignUp ? <SignUpComponent /> : <SignInComponent />}
+        {isSignUp ? <SignUpComponent /> : <SignInComponent />}
         </>
     )
 }

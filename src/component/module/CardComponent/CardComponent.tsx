@@ -2,7 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material';
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Input, Radio, RadioGroup } from '@mui/material';
 
 const CardComponent = ({randQuestions, hideButton,changeRadioValue, isSelected, seeValue}:{randQuestions:any, hideButton:string,changeRadioValue:any, isSelected:any, seeValue:() => void}) => {
 
@@ -28,7 +28,7 @@ const CardComponent = ({randQuestions, hideButton,changeRadioValue, isSelected, 
                             >
                             {opt.options.map((op:any) => <FormControlLabel sx={{paddingBottom:'10px'}} value={op} name="options" control={<Radio />} label= {op}/>)}
                         
-                        </RadioGroup>
+                            </RadioGroup>
                     </FormControl>
                 </CardContent>
             </Card>

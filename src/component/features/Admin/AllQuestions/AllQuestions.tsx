@@ -8,7 +8,7 @@ const AllQuestions = () =>{
     const heading :string[] = ['id','Subject','Question','Option1','Option2','Option3','Option4','Correct Answer'];
     const [quizSubject, setQuizSubject] = React.useState('');
     const [subName, setSubName] = React.useState('');
-    const [subs, setSubs] = useState(['select']);
+    const [subs, setSubs] = useState(['select all']);
     const [que, setQue] = useState([]);
     const [changeDisable, setChangeDisable] = useState(true);
 
@@ -24,6 +24,7 @@ const AllQuestions = () =>{
     const getAllQuestion = async () =>{
         const allQuestion = await axios.get("http://localhost:8080/admin/getallquestions");
         setQue(allQuestion.data);
+        
     }
 
     const handleChange = (event: string) => {
@@ -34,10 +35,13 @@ const AllQuestions = () =>{
     };
 
     const filterQuestion = async () =>{
-        
-        const filteredQuestion = await axios.get(`http://localhost:8080/admin/getallquestions/subject?subject=${quizSubject}`)
-        setQue(filteredQuestion.data);
-        
+        if(quizSubject){
+            const filteredQuestion = await axios.get(`http://localhost:8080/admin/getallquestions/subject?subject=${quizSubject}`)
+            setQue(filteredQuestion.data);
+            if(quizSubject==='select all'){
+                getAllQuestion();
+            }
+        }
     }
 
     return (

@@ -10,12 +10,28 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styless from './HeaderComponent.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../../../Slice/Login/LoginReducer';
 
 
-const HeaderComponent =({pages,setLoginUserDetails,contextData}:{pages:any,contextData:any,setLoginUserDetails:React.Dispatch<any>})=> {
+const HeaderComponent =({pages}:{pages:any})=> {
+
+  const userVal = useSelector((state:any) =>  state.login.userdata);
+  const dispatch = useDispatch();
+
+  const navi = useNavigate();
+
+      
+  const logout = () =>{
+    setTimeout(() => {
+      navi("/");
+      dispatch(setUserData({userdata:null}));
+      
+    }, 500);
+}
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -32,7 +48,6 @@ const HeaderComponent =({pages,setLoginUserDetails,contextData}:{pages:any,conte
     <AppBar position="static" color= 'secondary'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -48,7 +63,7 @@ const HeaderComponent =({pages,setLoginUserDetails,contextData}:{pages:any,conte
               textDecoration: 'none',
             }}
           >
-            {`${contextData.loginUserDetails.usertype} - ${contextData.loginUserDetails.fullname}`}
+            {userVal && userVal.usertype && userVal.fullname ? `${userVal.usertype} - ${userVal.fullname}` : ''}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -116,13 +131,11 @@ const HeaderComponent =({pages,setLoginUserDetails,contextData}:{pages:any,conte
             } >
                 {page.name}
               </NavLink>
-              
-              
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Button color="error" variant="contained" onClick={() => setLoginUserDetails({})}>Logout</Button>
+            <Button color="error" variant="contained" onClick={() =>logout()}>Logout</Button>
           </Box>
         </Toolbar>
       </Container>

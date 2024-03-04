@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
 import CardComponent from "../../../module/CardComponent/CardComponent";
 import PopupComponent from "../../../module/PopupComponent/PopupComponent";
 import axios from "axios";
-import { userContext } from "../../../MainComponent/MainComponent";
+import { useSelector } from "react-redux";
 
 const TakeQuiz = () =>{
-    const contextData = useContext(userContext);
+
+    const userDetail = useSelector((state:any)=>state.login.userdata)
 
     const loopValue = 5;
     const [subs, setSubs] = useState(['select'])
@@ -72,7 +73,7 @@ const TakeQuiz = () =>{
                 userSelectedAnswer[j] = 'Not Answered';
             }
 
-            finalAns.push({"resultquestion": userQuestion[j], "checkoption": userSelectedAnswer[j], "subject":quizSubject, "useremail":contextData.loginUserDetails.email});
+            finalAns.push({"resultquestion": userQuestion[j], "checkoption": userSelectedAnswer[j], "subject":quizSubject, "useremail":userDetail.email});
         } 
         const checkAnswer = await axios.post("http://localhost:8080/user/checkanswer", finalAns);
         setResult(checkAnswer.data);
