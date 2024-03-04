@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
 import TableComponent from "../../../module/TableComponent/TableComponent";
-import axios from "axios";
+import { allsubs, filterQuestion, getAllQuestion } from "../../../APIs/APIs";
 
 const AllQuestions = () => {
   const heading: string[] = [
@@ -21,40 +21,15 @@ const AllQuestions = () => {
   const [changeDisable, setChangeDisable] = useState(true);
 
   useEffect(() => {
-    const allsubs = async () => {
-      const allsubject = await axios.get(
-        "http://localhost:8080/admin/getallsubject"
-      );
-      setSubs((prevSubs) => [...prevSubs, ...allsubject.data]);
-    };
-    allsubs();
-    getAllQuestion();
+    allsubs(setSubs);
+    getAllQuestion(setQue);
   }, []);
-
-  const getAllQuestion = async () => {
-    const allQuestion = await axios.get(
-      "http://localhost:8080/admin/getallquestions"
-    );
-    setQue(allQuestion.data);
-  };
 
   const handleChange = (event: string) => {
     if (event) {
       setChangeDisable(false);
     }
     setQuizSubject(event);
-  };
-
-  const filterQuestion = async () => {
-    if (quizSubject) {
-      const filteredQuestion = await axios.get(
-        `http://localhost:8080/admin/getallquestions/subject?subject=${quizSubject}`
-      );
-      setQue(filteredQuestion.data);
-      if (quizSubject === "select all") {
-        getAllQuestion();
-      }
-    }
   };
 
   return (
@@ -69,7 +44,7 @@ const AllQuestions = () => {
         />
         <button
           className="border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white "
-          onClick={filterQuestion}
+          onClick={() => filterQuestion(quizSubject, setQue)}
           disabled={changeDisable}
         >
           Start

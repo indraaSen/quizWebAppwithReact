@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styless from "../AdminComponent.module.scss";
 import AvatarComponent from "../../../module/AvatarComponent/AvatarComponent";
-import axios from "axios";
 import CardComponentSetting from "../../../module/CardComponent.Setting/CardComponent.Setting";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeAdminCredentials } from "../../../APIs/APIs";
+import { useNavigate } from "react-router-dom";
 
 const AdminSetting = () => {
   const userDetail = useSelector((state: any) => state.login.userdata);
@@ -14,6 +15,9 @@ const AdminSetting = () => {
   const [textField1, setTextField1] = useState("");
   const [textField2, setTextField2] = useState("");
   const [textvalue, setTextValue] = useState<any>([]);
+
+  const dispatch = useDispatch();
+  const navi = useNavigate();
 
   const openUserName = async (buttonName: string) => {
     if (buttonName === "User Name") {
@@ -28,59 +32,17 @@ const AdminSetting = () => {
     }
   };
 
-  const changeData = async (val1: string, val2: string) => {
-    if (val1 === "Email" && val2 === "User Name") {
-      const email = textField1;
-      const fullname = textField2;
-      if (userDetail.email === email) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/admin/updateusername",
-          { email, fullname }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("User Name Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter valid email!!");
-      }
-    } else if (val1 === "Email" && val2 === "Password") {
-      const email = textField1;
-      const password = textField2;
-      if (userDetail.email === email) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/admin/updateuserpassword",
-          { email, password }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("Password Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter valid email!!");
-      }
-    } else if (val1 === "Password" && val2 === "Email") {
-      const password = textField1;
-      const email = textField2;
-      if (userDetail.password === password) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/admin/updateuseremail",
-          { password, email }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("Email Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter vaild password");
-      }
-    }
+  const changeData = (val: string, val2: string) => {
+    changeAdminCredentials(
+      val,
+      val2,
+      textField1,
+      textField2,
+      userDetail,
+      setOpen,
+      dispatch,
+      navi
+    );
   };
 
   return (
@@ -88,7 +50,9 @@ const AdminSetting = () => {
       <div style={{ marginTop: "20vh" }}>
         <div className={styless["setting-div"]}>
           <AvatarComponent
-            avatarInitial={userDetail.fullname.split("")[0].toUpperCase()}
+            avatarInitial={
+              userDetail && userDetail.fullname.split("")[0].toUpperCase()
+            }
           />
         </div>
         <div
@@ -99,7 +63,7 @@ const AdminSetting = () => {
           }}
         >
           <h1>
-            <b>{userDetail.fullname}</b>
+            <b>{userDetail && userDetail.fullname}</b>
           </h1>
         </div>
       </div>

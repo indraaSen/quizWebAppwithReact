@@ -1,6 +1,6 @@
 import { Box, Card, TextField, Button } from "@mui/material";
-import axios from "axios";
 import { useState } from "react";
+import { addNewAdmin } from "../../../APIs/APIs";
 
 const AddNewAdmin = () => {
   const [fullName, setFullName] = useState("");
@@ -8,40 +8,6 @@ const AddNewAdmin = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userType, setUserType] = useState("admin");
-
-  const addNewUser = async () => {
-    try {
-      if (
-        fullName.length !== 0 &&
-        email.length !== 0 &&
-        password.length !== 0 &&
-        confirmPassword.length !== 0 &&
-        userType.length !== 0
-      ) {
-        if (password === confirmPassword) {
-          const response = await axios.post(
-            "http://localhost:8080/admin/savenewadmin",
-            { fullname: fullName, email, password, usertype: userType }
-          );
-          if (response.status === 200) {
-            alert("Account created");
-            setFullName("");
-            setEmail("");
-            setPassword("");
-            setConfirmPassword("");
-          }
-        } else {
-          alert("Password did not matched");
-        }
-      } else {
-        alert("Field should not be empty!!");
-      }
-    } catch (error) {
-      alert(
-        "An error occurred during creating new admin. Please try again later."
-      );
-    }
-  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", margin: "20px" }}>
@@ -100,7 +66,19 @@ const AddNewAdmin = () => {
           variant="contained"
           type="submit"
           color="primary"
-          onClick={addNewUser}
+          onClick={() =>
+            addNewAdmin(
+              fullName,
+              email,
+              password,
+              confirmPassword,
+              userType,
+              setFullName,
+              setEmail,
+              setPassword,
+              setConfirmPassword
+            )
+          }
         >
           Add
         </Button>

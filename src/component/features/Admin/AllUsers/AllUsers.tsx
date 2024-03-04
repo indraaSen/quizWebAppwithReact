@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import DropDownComponent from "../../../module/DropDownComponent/DropDownComponent";
 import UserTable from "../../../module/UserTable/UserTable";
-import axios from "axios";
+import { filterUser, getAllUsers } from "../../../APIs/APIs";
 
 const AllUsers = () => {
   const subs: string[] = ["select all", "user", "admin"];
@@ -17,34 +17,11 @@ const AllUsers = () => {
   const [rows, setRows] = React.useState<any>();
 
   useEffect(() => {
-    getAllUsers();
+    getAllUsers(setRows);
   }, []);
-
-  const getAllUsers = async () => {
-    const users = await axios.get("http://localhost:8080/admin/getallusers");
-    setRows(users.data);
-  };
 
   const handleChange = (event: string) => {
     setUserType(event);
-  };
-
-  const filterUser = async () => {
-    if (userType === "admin") {
-      const alluser = await axios.get(
-        "http://localhost:8080/admin/getallusers/usertype?usertype=admin"
-      );
-      setRows(alluser.data);
-    } else if (userType === "user") {
-      const alluser = await axios.get(
-        "http://localhost:8080/admin/getallusers/usertype?usertype=user"
-      );
-      setRows(alluser.data);
-    } else if (userType === "select all") {
-      getAllUsers();
-    } else {
-      alert("Please select the correct value");
-    }
   };
 
   return (
@@ -59,7 +36,7 @@ const AllUsers = () => {
         />
         <button
           className="border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white "
-          onClick={filterUser}
+          onClick={() => filterUser(userType, setRows)}
         >
           Find
         </button>

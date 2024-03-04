@@ -1,6 +1,7 @@
 import { Box, Button, Card, TextField } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
+import { addQuestion } from "../../../APIs/APIs";
 
 const AddQuestions = () => {
   const [subject, setSubject] = useState("");
@@ -10,48 +11,6 @@ const AddQuestions = () => {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [correctanswer, setCorrectAnswer] = useState("");
-
-  const addQuestion = async () => {
-    try {
-      const newQ = {
-        subject,
-        question,
-        option1,
-        option2,
-        option3,
-        option4,
-        correctanswer,
-      };
-      if (
-        subject.length !== 0 &&
-        question.length !== 0 &&
-        option1.length !== 0 &&
-        option2.length !== 0 &&
-        option3.length !== 0 &&
-        option4.length !== 0 &&
-        correctanswer
-      ) {
-        const newQuestion = await axios.post(
-          "http://localhost:8080/admin/addnewquestion",
-          newQ
-        );
-        if (newQuestion.status === 200) {
-          alert("Question added");
-          setSubject("");
-          setQuestion("");
-          setOption1("");
-          setOption2("");
-          setOption3("");
-          setOption4("");
-          setCorrectAnswer("");
-        }
-      } else {
-        alert("Field should not be Empty!");
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
 
   return (
     <div>
@@ -112,7 +71,24 @@ const AddQuestions = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => addQuestion()}
+            onClick={() =>
+              addQuestion(
+                subject,
+                question,
+                option1,
+                option2,
+                option3,
+                option4,
+                correctanswer,
+                setSubject,
+                setQuestion,
+                setOption1,
+                setOption2,
+                setOption3,
+                setOption4,
+                setCorrectAnswer
+              )
+            }
           >
             Add
           </Button>

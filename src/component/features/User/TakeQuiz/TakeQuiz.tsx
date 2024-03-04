@@ -4,6 +4,7 @@ import CardComponent from "../../../module/CardComponent/CardComponent";
 import PopupComponent from "../../../module/PopupComponent/PopupComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { allsubs, startQuiz } from "../../../APIs/APIs";
 
 const TakeQuiz = () => {
   const userDetail = useSelector((state: any) => state.login.userdata);
@@ -19,37 +20,12 @@ const TakeQuiz = () => {
   const [quizBtn, setQuizBtn] = useState(true);
 
   useEffect(() => {
-    const allsubs = async () => {
-      const allsubject = await axios.get(
-        "http://localhost:8080/admin/getallsubject"
-      );
-      setSubs((prevSubs) => [...prevSubs, ...allsubject.data]);
-    };
-    allsubs();
+    allsubs(setSubs);
   }, []);
 
   const handleChange = (event: string) => {
     setQuizSubject(event);
     setQuizBtn(false);
-  };
-
-  const startQuiz = async () => {
-    try {
-      if (quizSubject !== "select" && quizSubject !== null) {
-        const quizQuestion = await axios(
-          `http://localhost:8080/user/takeaquiz?subject=${quizSubject}`
-        );
-        setRandQuestions(quizQuestion.data);
-        setIsSelected({});
-        setHideButton("");
-      } else {
-        alert("please select the subject");
-      }
-    } catch (error) {
-      alert(
-        "Something went wrong or Not have Enough Questions!! Please try another subject."
-      );
-    }
   };
 
   const changeRadioValue = (index: number, val: string) => {
@@ -111,7 +87,14 @@ const TakeQuiz = () => {
         />
         <button
           className="border-solid border-2 border-indigo-600 p-2 w-32 rounded-md bg-blue-700 text-white "
-          onClick={startQuiz}
+          onClick={() =>
+            startQuiz(
+              quizSubject,
+              setRandQuestions,
+              setIsSelected,
+              setHideButton
+            )
+          }
           disabled={quizBtn}
         >
           Start

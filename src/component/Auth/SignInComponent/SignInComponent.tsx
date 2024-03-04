@@ -15,7 +15,11 @@ const SignInComponent = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    LoginUser({ email, password }, dispatch, navi);
+    if (email.length !== 0 && password.length !== 0) {
+      LoginUser({ email, password }, dispatch, navi);
+    } else {
+      alert("Field should not be empty!");
+    }
     if (userVal === null) {
       navi("/");
     }

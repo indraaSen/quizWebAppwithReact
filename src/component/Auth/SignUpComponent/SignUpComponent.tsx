@@ -3,6 +3,7 @@ import { Box, TextField, Button, Card } from "@mui/material";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setIsSignUp } from "../../../Slice/Login/LoginReducer";
+import { addNewUser } from "../../APIs/APIs";
 
 const SignUpComponent = () => {
   const dispatch = useDispatch();
@@ -12,38 +13,6 @@ const SignUpComponent = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userType, setUserType] = useState("user");
-
-  const addNewUser = async () => {
-    try {
-      if (
-        fullName.length !== 0 &&
-        email.length !== 0 &&
-        password.length !== 0 &&
-        confirmPassword.length !== 0 &&
-        userType.length !== 0
-      ) {
-        if (password === confirmPassword) {
-          const response = await axios.post(
-            "http://localhost:8080/user/saveuser",
-            { fullname: fullName, email, password, usertype: userType }
-          );
-
-          if (response.status === 201) {
-            alert("Account created");
-            window.location.href = "/";
-          } else {
-            alert("Please check your credentials.");
-          }
-        } else {
-          alert("Password did not matched");
-        }
-      } else {
-        alert("Field should not be empty!!");
-      }
-    } catch (error) {
-      alert("An error occurred during sign up. Please try again later.");
-    }
-  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", margin: "20px" }}>
@@ -100,7 +69,9 @@ const SignUpComponent = () => {
           variant="contained"
           type="submit"
           color="success"
-          onClick={addNewUser}
+          onClick={() =>
+            addNewUser(fullName, email, password, confirmPassword, userType)
+          }
         >
           Sign Up
         </Button>

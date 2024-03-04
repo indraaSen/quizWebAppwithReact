@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import AvatarComponent from "../../../module/AvatarComponent/AvatarComponent";
 import styless from "../UserComponent.module.scss";
 import CardComponentSetting from "../../../module/CardComponent.Setting/CardComponent.Setting";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeUserCredentials } from "../../../APIs/APIs";
+import { useNavigate } from "react-router-dom";
 
 const Setting = () => {
   const cardHeadText = ["User Name", "Password", "Email"];
+
   const userDetail = useSelector((state: any) => state.login.userdata);
 
   const [open, setOpen] = useState(false);
@@ -14,6 +16,8 @@ const Setting = () => {
   const [textField2, setTextField2] = useState("");
   const [textvalue, setTextValue] = useState<any>([]);
 
+  const dispatch = useDispatch();
+  const navi = useNavigate();
   const openUserName = async (buttonName: string) => {
     if (buttonName === "User Name") {
       setTextValue(["Email", "User Name"]);
@@ -27,59 +31,17 @@ const Setting = () => {
     }
   };
 
-  const changeData = async (val1: string, val2: string) => {
-    if (val1 === "Email" && val2 === "User Name") {
-      const email = textField1;
-      const fullname = textField2;
-      if (userDetail.email === email) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/user/updateusername",
-          { email, fullname }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("User Name Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter valid email!!");
-      }
-    } else if (val1 === "Email" && val2 === "Password") {
-      const email = textField1;
-      const password = textField2;
-      if (userDetail.email === email) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/user/updateuserpassword",
-          { email, password }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("Password Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter valid email!!");
-      }
-    } else if (val1 === "Password" && val2 === "Email") {
-      const password = textField1;
-      const email = textField2;
-      if (userDetail.password === password) {
-        const changeusername = await axios.post(
-          "http://localhost:8080/user/updateuseremail",
-          { password, email }
-        );
-        if (changeusername.status === 200) {
-          setOpen(false);
-          alert("Email Changed! Please LogIn again");
-        } else {
-          alert("something went wrong!!");
-        }
-      } else {
-        alert("Enter vaild password");
-      }
-    }
+  const changeData = (val1: string, val2: string) => {
+    changeUserCredentials(
+      val1,
+      val2,
+      textField1,
+      textField2,
+      userDetail,
+      setOpen,
+      dispatch,
+      navi
+    );
   };
 
   return (
@@ -87,7 +49,9 @@ const Setting = () => {
       <div style={{ marginTop: "20vh" }}>
         <div className={styless["setting-div"]}>
           <AvatarComponent
-            avatarInitial={userDetail.fullname.split("")[0].toUpperCase()}
+            avatarInitial={
+              userDetail && userDetail.fullname.split("")[0].toUpperCase()
+            }
           />
         </div>
         <div
@@ -98,7 +62,7 @@ const Setting = () => {
           }}
         >
           <h1>
-            <b>{userDetail.fullname}</b>
+            <b>{userDetail && userDetail.fullname}</b>
           </h1>
         </div>
       </div>
