@@ -1,9 +1,8 @@
-
 import React from "react";
 import AuthComponent from "../Auth/AuthComponent";
 import AdminComponent from "../features/Admin/AdminComponent";
 import UserComponent from "../features/User/UserComponent";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignInComponent from "../Auth/SignInComponent/SignInComponent";
 import SignUpComponent from "../Auth/SignUpComponent/SignUpComponent";
 import Home from "../features/User/Home/Home";
@@ -18,35 +17,31 @@ import AdminSetting from "../features/Admin/AdminSetting/AdminSetting";
 import ErrorHandle from "../ErrorHandle/ErrorHandle";
 import AddNewAdmin from "../features/Admin/AddNewAdmin/AddNewAdmin";
 
-const MainComponent = () =>{
-
-    return (
-       
-         <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AuthComponent />} />
-          <Route path="/signin" element={<SignInComponent />} />
-          <Route path="/signup" element={<SignUpComponent />} />
-          <Route path="/user" element={<UserComponent />}>
-            <Route path="home" element={<Home />} />
-            <Route path="result" element={<Result />} />
-            <Route path="setting" element={<Setting />} />
-            <Route path="takequiz" element={<TakeQuiz />} />
-          </Route>
-          <Route path="/admin" element={<AdminComponent />}>
-            <Route path="home" element={<AdminHome />} />
-            <Route path="addquestion" element={<AddQuestions />} />
-            <Route path="allquestion" element={<AllQuestions />} />
-            <Route path="alluser" element={<AllUsers />} />
-            <Route path="addnewadmin" element={<AddNewAdmin/>} />
-            <Route path="setting" element={<AdminSetting />} />
-          </Route>
-          <Route path="*" element={<ErrorHandle />} />
-        </Routes>
-      </BrowserRouter>
- 
-    );
-  }
-    
+const MainComponent = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AuthComponent />} />
+        <Route path="/signin" element={<SignInComponent />} />
+        <Route path="/signup" element={<SignUpComponent />} />
+        <Route path="/user" element={<UserComponent />}>
+          <Route path="home" element={<Home />} />
+          <Route path="result" element={<Result />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="takequiz" element={<TakeQuiz />} />
+        </Route>
+        <Route path="/admin" element={<AdminComponent />}>
+          <Route path="home" element={<AdminHome />} />
+          <Route path="addquestion" element={<AddQuestions />} />
+          <Route path="allquestion" element={<AllQuestions />} />
+          <Route path="alluser" element={<AllUsers />} />
+          <Route path="addnewadmin" element={<AddNewAdmin />} />
+          <Route path="setting" element={<AdminSetting />} />
+        </Route>
+        <Route path="*" element={<ErrorHandle />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default MainComponent;
