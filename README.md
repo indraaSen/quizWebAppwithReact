@@ -22,17 +22,18 @@
 ** admin can see number of users. ** 
 ![Screenshot admin-allusers-1](https://github.com/indraaSen/quizWebAppwithReact/assets/154053128/2038763c-8a43-4d6c-8c21-6a2164b300ce)
 
-<u>Built with</u>
+## <ins>Built with</ins>
+
 ### TypeScript
 ### ReactJs
 ### Java
 ### SpringBoot
 ### MySQL
 
-<u>Development</u>
+## <ins>Development</ins>
 
 To get the local copy of the code, use this points.
 
-*** git clone ***
+*** git clone https://github.com/indraaSen/quizWebAppwithReact.git ***
 *** npm install *** (inside of the terminal where project is open)
 *** npm start *** to start the project
